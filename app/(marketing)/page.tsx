@@ -5,7 +5,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Poppins } from "next/font/google";
 
-const headingFont = localFont({ src: "../../public/font.woff2" });
+const headingFont = localFont({ src: "../../public/fonts/font.woff2" });
 
 const textFont = Poppins({
   weight: [
