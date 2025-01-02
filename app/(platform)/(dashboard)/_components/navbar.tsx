@@ -16,7 +16,7 @@ const navbar = () => {
           className="rounded-sm hidden md:block h-auto py-1.5
         px-2
         "
-        >q
+        >
           Create
         </Button>
         <Button
