@@ -6,7 +6,14 @@ import FormButton from "./form-button";
 import { useAction } from "@/hooks/use-action";
 
 export const Form = () => {
-  const { execute, fieldErrors } = useAction(createBoard);
+  const { execute, fieldErrors } = useAction(createBoard, {
+    onSuccess: (data) => {
+      console.log(data);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
 
   const onSubmit = (formData: FormData) => {
     const title = formData.get("title") as string;
