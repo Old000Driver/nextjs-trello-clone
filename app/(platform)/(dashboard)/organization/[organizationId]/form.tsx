@@ -1,19 +1,22 @@
 "use client";
 
-import { create } from "@/actions/create-board";
-import { useFormState } from "react-dom";
-import { State } from "@/actions/create-board";
+import { createBoard } from "@/actions/create-board";
 import FormInput from "./form-input";
 import FormButton from "./form-button";
+import { useAction } from "@/hooks/use-action";
 
 export const Form = () => {
-  const initialState: State = { message: null, errors: {} };
-  const [state, dispatch] = useFormState(create, initialState);
-  // 用于更新表单状态并触发 create 函数。
+  const { execute, fieldErrors } = useAction(createBoard);
+
+  const onSubmit = (formData: FormData) => {
+    const title = formData.get("title") as string;
+
+    execute({ title });
+  };
 
   return (
-    <form action={dispatch} className="flex flex-col space-y-2">
-      <FormInput errors={state?.errors} />
+    <form action={onSubmit} className="flex flex-col space-y-2">
+      <FormInput errors={fieldErrors} />
       <FormButton />
     </form>
   );
