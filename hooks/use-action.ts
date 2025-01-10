@@ -40,15 +40,16 @@ export const useAction = <TInput, TOutput>(
           return;
         }
 
-        // 如果有字段错误，更新状态并调用错误回调
-        if (result.fieldErrors) {
-          setFieldErrors(result.fieldErrors);
-          options.onError?.(result.error);
-        }
+        // 校验更新状态
+        setFieldErrors(result.fieldErrors);
 
         // 如果有通用错误，更新状态并调用成功回调
         if (result.error) {
           setError(result.error);
+          options.onError?.(result.error);
+        }
+        if (result.data) {
+          setData(result.data);
           options.onSuccess?.(result.data);
         }
       } finally {
