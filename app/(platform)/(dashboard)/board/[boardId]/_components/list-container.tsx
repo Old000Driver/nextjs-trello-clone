@@ -5,6 +5,10 @@ import { ListForm } from "./list-form";
 import { useEffect, useState } from "react";
 import { ListItem } from "../../../_components/list-item";
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
+import { useAction } from "@/hooks/use-action";
+import { updateListOrder } from "@/actions/update-list-order";
+import { toast } from "sonner";
+import { updateCardOrder } from "@/actions/update-card-order";
 
 interface ListContainerProps {
   data: ListWithCards[];
@@ -19,6 +23,24 @@ function reorder<T>(list: T[], startIndex: number, endIndex: number) {
 }
 export const ListContainer = ({ data, boardId }: ListContainerProps) => {
   const [orderedData, setOrderedData] = useState(data);
+
+  const { execute: executeUpdateListOrder } = useAction(updateListOrder, {
+    onSuccess: () => {
+      toast.success("List order updated");
+    },
+    onError: (error) => {
+      toast.error(error);
+    },
+  });
+
+  const { execute: executeUpdateCardOrder } = useAction(updateCardOrder, {
+    onSuccess: () => {
+      toast.success("Card order updated");
+    },
+    onError: (error) => {
+      toast.error(error);
+    },
+  });
 
   useEffect(() => {
     setOrderedData(data);
@@ -40,6 +62,10 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
         (item, index) => ({ ...item, order: index })
       );
       setOrderedData(items);
+      executeUpdateListOrder({
+        boardId,
+        items,
+      });
     }
 
     if (type === "card") {
@@ -57,6 +83,7 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
 
       if (!destList.cards) destList.cards = [];
 
+      // 同一个列表
       if (source.droppableId === destination.droppableId) {
         const reorderedCards = reorder(
           sourceList.cards,
@@ -71,7 +98,12 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
         sourceList.cards = reorderedCards;
 
         setOrderedData(newOrderedData);
+        executeUpdateCardOrder({
+          boardId,
+          items: reorderedCards,
+        });
       } else {
+        // 不同列表
         const [movedCard] = sourceList.cards.splice(source.index, 1);
         movedCard.listId = destination.droppableId;
 
@@ -86,6 +118,11 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
         });
 
         setOrderedData(newOrderedData);
+        executeUpdateCardOrder({
+          boardId,
+          // items: [...sourceList.cards, ...destList.cards],
+          items: destList.cards,
+        });
       }
     }
   };
