@@ -5,7 +5,7 @@ import { auth } from "@clerk/nextjs";
 import { db } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { createSafeAction } from "@/lib/create-safe-action";
-import { UpdateCard } from "./schema";
+import { DeleteCard } from "./schema";
 const handler = async (data: InputType): Promise<ReturnType> => {
   const { userId, orgId } = auth();
 
@@ -15,29 +15,26 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     };
   }
 
-  const { id, boardId, ...values } = data;
-  // console.log("cardUpdate🔔", data);
+  const { id, boardId } = data;
   let card;
   try {
-    card = await db.card.update({
+    card = await db.card.delete({
       where: {
         id,
         list: {
-          boardId,
+          board: {
+            orgId,
+          },
         },
-      },
-      data: {
-        ...values,
       },
     });
   } catch (error) {
-    // console.log("cardUpdate-error⚠️", error);
     return {
-      error: "Failed to update card",
+      error: "Failed to delete card",
     };
   }
-  revalidatePath(`/board/${boardId}`);
+  revalidatePath(`/organization/${boardId}`);
   return { data: card };
 };
 
-export const updateCard = createSafeAction(UpdateCard, handler);
+export const deleteCard = createSafeAction(DeleteCard, handler);
