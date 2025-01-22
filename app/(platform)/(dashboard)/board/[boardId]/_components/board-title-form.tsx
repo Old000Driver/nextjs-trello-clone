@@ -20,7 +20,7 @@ export const BoardTitleForm = ({ data }: BoardTitleFormProps) => {
   const { execute } = useAction(updateBoard, {
     onSuccess: (data) => {
       toast.success(`Board "${data?.title}" updated`);
-      setTitle(title);
+      setTitle(data?.title);
       disableEditing();
     },
     onError: (error) => {
