@@ -6,6 +6,8 @@ import { db } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { createSafeAction } from "@/lib/create-safe-action";
 import { UpdateBoard } from "./schema";
+import { createAuditLog } from "@/lib/create-audit-log";
+import { ENTITY_TYPE, ACTION } from "@prisma/client";
 const handler = async (data: InputType): Promise<ReturnType> => {
   const { userId, orgId } = auth();
 
@@ -26,6 +28,13 @@ const handler = async (data: InputType): Promise<ReturnType> => {
       data: {
         title,
       },
+    });
+
+    await createAuditLog({
+      entityId: board.id,
+      entityType: ENTITY_TYPE.CARD,
+      entityTitle: board.title,
+      action: ACTION.UPDATE,
     });
   } catch (error) {
     return {
