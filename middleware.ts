@@ -8,7 +8,7 @@ import { NextResponse } from "next/server";
 // 默认导出一个经过配置的认证中间件
 export default authMiddleware({
   // 配置公开路由，即不需要认证即可访问的路由
-  publicRoutes: ["/"],
+  publicRoutes: ["/", "/api/webhook"],
   // 认证后执行的回调函数，用于处理认证后的逻辑
   afterAuth(auth, req) {
     // 当用户已认证且访问的是公开路由时，重定向用户到组织选择页面或特定的组织页面
