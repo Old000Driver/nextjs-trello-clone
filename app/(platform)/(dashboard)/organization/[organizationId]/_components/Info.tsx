@@ -11,6 +11,9 @@ interface InfoProps {
 
 const Info = ({ isPro }: InfoProps) => {
   const { organization, isLoaded } = useOrganization();
+  if (!organization) {
+    return null;
+  }
   if (!isLoaded) {
     return <Info.Skeleton />;
   }
@@ -19,7 +22,7 @@ const Info = ({ isPro }: InfoProps) => {
       <div className="w-[60px] h-[60px] relative">
         <Image
           fill
-          src={organization?.imageUrl!}
+          src={organization?.imageUrl}
           alt="Organization"
           className="rounded-sm object-cover"
         />
@@ -49,5 +52,7 @@ Info.Skeleton = () => {
     </div>
   );
 };
+
+Info.displayName = "Info";
 
 export default Info;

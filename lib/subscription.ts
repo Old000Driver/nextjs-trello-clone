@@ -26,9 +26,12 @@ export const checkSubscription = async () => {
     return false;
   }
 
+  const { stripePriceId, stripeCurrentPeriodEnd } = orgSubscription;
+
   const isValid =
-    orgSubscription.stripePriceId &&
-    orgSubscription.stripeCurrentPeriodEnd?.getTime()! + DAY_IN_MS > Date.now();
+    stripePriceId &&
+    stripeCurrentPeriodEnd &&
+    stripeCurrentPeriodEnd.getTime() + DAY_IN_MS > Date.now();
 
   return !!isValid;
 };

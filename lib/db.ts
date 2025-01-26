@@ -5,6 +5,7 @@ import { PrismaClient } from "@prisma/client";
 // 因此可以确保在整个应用生命周期中只创建一个 Prisma 客户端实例。
 
 declare global {
+  // eslint-disable-next-line no-var
   var prisma: PrismaClient | undefined;
 }
 

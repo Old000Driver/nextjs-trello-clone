@@ -4,7 +4,7 @@ import { ListWithCards } from "@/types";
 import { ListForm } from "./list-form";
 import { useEffect, useState } from "react";
 import { ListItem } from "../../../_components/list-item";
-import { DragDropContext, Droppable } from "@hello-pangea/dnd";
+import { DragDropContext, Droppable, DropResult } from "@hello-pangea/dnd";
 import { useAction } from "@/hooks/use-action";
 import { updateListOrder } from "@/actions/update-list-order";
 import { toast } from "sonner";
@@ -46,13 +46,13 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
     setOrderedData(data);
   }, [data]);
 
-  const onDragEnd = (result: any) => {
+  const onDragEnd = (result: DropResult) => {
     const { source, destination, type } = result;
 
     if (!destination) return;
 
     if (
-      destination.droppableId === source.draggableId &&
+      destination.droppableId === source.droppableId &&
       destination.index === source.index
     )
       return;
@@ -69,7 +69,7 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
     }
 
     if (type === "card") {
-      let newOrderedData = [...orderedData];
+      const newOrderedData = [...orderedData];
       const sourceList = newOrderedData.find(
         (list) => list.id === source.droppableId
       );

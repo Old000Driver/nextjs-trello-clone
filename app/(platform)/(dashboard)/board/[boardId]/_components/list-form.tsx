@@ -2,7 +2,7 @@
 
 import { Plus, X } from "lucide-react";
 import { ListWrapper } from "./list-wrapper";
-import { useState, useRef, ElementRef, use } from "react";
+import { useState, useRef, ElementRef } from "react";
 import { useEventListener, useOnClickOutside } from "usehooks-ts";
 
 import { FormInput } from "@/components/form/form-input";

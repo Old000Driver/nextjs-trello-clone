@@ -41,3 +41,5 @@ ActivityList.Skeleton = () => {
     </div>
   );
 };
+
+ActivityList.displayName = "ActivityList";

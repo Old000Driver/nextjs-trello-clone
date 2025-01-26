@@ -87,4 +87,6 @@ BoardList.Skeleton = () => {
   );
 };
 
+BoardList.displayName = "BoardList";
+
 export default BoardList;
