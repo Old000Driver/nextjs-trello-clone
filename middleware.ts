@@ -34,6 +34,8 @@ export default authMiddleware({
     if (auth.userId && !auth.orgId && req.nextUrl.pathname !== "/select-org") {
       return NextResponse.redirect(new URL("/select-org", req.url));
     }
+
+    return {}
   },
 });
 
