@@ -3,11 +3,11 @@ import { z } from "zod";
 export const CreateList = z.object({
   title: z
     .string({
-      required_error: "Title is required",
-      invalid_type_error: "Title must be a string",
+      required_error: "标题必须填写",
+      invalid_type_error: "标题必须是字符",
     })
     .min(3, {
-      message: "Title must be at least 3 characters long",
+      message: "标题必须大于 3 个字符",
     }),
   boardId: z.string(),
 });

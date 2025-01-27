@@ -33,7 +33,7 @@ export const Header = ({ data }: HeaderProps) => {
       });
 
       setTitle(data.title);
-      toast.success(`Rename to "${data.title}"`);
+      toast.success(`重名为 "${data.title}"`);
     },
     onError: (error) => {
       toast.error(error);

@@ -35,7 +35,7 @@ export const ListHeader = ({ data, onAddCard }: ListHeaderProps) => {
   const { execute } = useAction(updateList, {
     onSuccess: (data) => {
       if (!data) return;
-      toast.success(`Rename to "${data.title}"`);
+      toast.success(`重命名为 "${data.title}"`);
       setTitle(data.title);
       disabledEditing();
     },

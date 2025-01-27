@@ -37,31 +37,27 @@ const NavItem = ({
   const routes = [
     {
       icon: <Layout className="w-4 h-4 mr-2" />,
-      label: "Boards",
+      label: "面板",
       href: `/organization/${organization.id}`,
     },
     {
       icon: <Activity className="w-4 h-4 mr-2" />,
-      label: "Activity",
+      label: "活动",
       href: `/organization/${organization.id}/activity`,
     },
     {
       icon: <Settings className="w-4 h-4 mr-2" />,
-      label: "Settings",
+      label: "设置",
       href: `/organization/${organization.id}/settings`,
     },
     {
       icon: <CreditCard className="w-4 h-4 mr-2" />,
-      label: "Billing",
+      label: "账单",
       href: `/organization/${organization.id}/billing`,
     },
   ];
 
   const onClick = (href: string) => {
-    // const isClicked = pathname === href;
-    // if (isClicked) {
-    //   return router.push(href);
-    // }
     router.push(href);
   };
 

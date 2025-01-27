@@ -21,7 +21,7 @@ const navbar = () => {
         px-2
         "
           >
-            Create
+            创建
           </Button>
         </FormPopover>
         <FormPopover>

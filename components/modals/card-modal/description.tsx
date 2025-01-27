@@ -58,7 +58,7 @@ export const Description = ({ data }: DescriptionProps) => {
       queryClient.invalidateQueries({
         queryKey: ["cards", data.id],
       });
-      toast.success(`Card "${data.title}" updated`);
+      toast.success(`卡片 "${data.title}" 已更新`);
       disabledEditing();
     },
     onError: (error) => {

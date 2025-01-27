@@ -39,17 +39,17 @@ export const ProModal = () => {
         </div>
         <div className="text-neutral-700 mx-auto space-y-6 p-6">
           <h2 className="font-semibold text-xl">
-            Upgrade to Taskify Pro Today!
+            立即升级到 Taskify Pro！
           </h2>
           <p className="text-xs font-semibold text-neutral-600">
-            Explore the best of Taskify
+            探索 Taskify 的最佳功能
           </p>
           <div className="pl-3">
             <ul className="text-sm list-disc">
-              <li>Unlimited boards</li>
-              <li>Advanced checklists</li>
-              <li>Admin and security features</li>
-              <li>And more!</li>
+              <li>无限制的面板</li>
+              <li>高级检查表</li>
+              <li>管理员和安全功能</li>
+              <li>以及更多！</li>
             </ul>
           </div>
           <Button
@@ -58,7 +58,7 @@ export const ProModal = () => {
             disabled={isLoading}
             onClick={onClick}
           >
-            Upgrade
+            升级为 Pro
           </Button>
         </div>
       </DialogContent>

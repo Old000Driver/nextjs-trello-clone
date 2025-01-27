@@ -32,7 +32,7 @@ export const SubscriptionButton = ({ isPro }: SubscriptionButtonProps) => {
 
   return (
     <Button variant={"primary"} disabled={isLoading} onClick={onClick}>
-      {isPro ? "Manage Subscription" : "Upgrade to Pro"}
+      {isPro ? "Manage Subscription" : "升级为 Pro"}
     </Button>
   );
 };

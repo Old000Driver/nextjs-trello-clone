@@ -27,7 +27,7 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(
     const formRef = useRef<ElementRef<"form">>(null);
     const { execute, fieldErrors } = useAction(createCard, {
       onSuccess: (data) => {
-        toast.success(`Card "${data?.title}" created`);
+        toast.success(`卡片 "${data?.title}" 已创建`);
         formRef.current?.reset();
       },
       onError: (error) => {
@@ -76,13 +76,13 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(
             id="title"
             onKeyDown={onTextareaKeyDown}
             ref={ref}
-            placeholder="Enter a title for this card..."
+            placeholder="输入卡片标题..."
             errors={fieldErrors}
             
           />
           <input hidden id="listId" name="listId" value={listId}  />
           <div className="flex items-center gap-x-1">
-            <FormSubmit>Add Card</FormSubmit>
+            <FormSubmit>添加卡片</FormSubmit>
             <Button onClick={disabledEditing} size={"sm"} variant={"ghost"}>
               <X className="h-5 w-5" />
             </Button>
@@ -100,7 +100,7 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(
           variant={"ghost"}
         >
           <Plus className="h-4 w-4 mr-2" />
-          Add a Card
+          添加一个卡片
         </Button>
       </div>
     );

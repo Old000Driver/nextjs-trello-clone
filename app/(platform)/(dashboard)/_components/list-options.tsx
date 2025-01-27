@@ -28,7 +28,7 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
   const { execute } = useAction(deleteList, {
     onSuccess: (data) => {
       if (!data) return;
-      toast.success(`List "${data.title}" deleted`);
+      toast.success(`列表 "${data.title}" 已删除`);
       closeRef.current?.click();
     },
     onError: (error) => {
@@ -39,7 +39,7 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
   const { execute: executeCopy } = useAction(copyList, {
     onSuccess: (data) => {
       if (!data) return;
-      toast.success(`List "${data.title}" copied`);
+      toast.success(`列表 "${data.title}" 已复制`);
       closeRef.current?.click();
     },
     onError: (error) => {
@@ -83,7 +83,7 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
           className="rounded-none w-full h-auto p-2 px-5 justify-start font-normal text-sm"
           variant={"ghost"}
         >
-          Add card...
+          添加卡片...
         </Button>
         <form action={onCopy}>
           <input hidden name="id" id="id" value={data.id} />

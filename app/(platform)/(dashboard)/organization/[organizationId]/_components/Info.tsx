@@ -31,7 +31,7 @@ const Info = ({ isPro }: InfoProps) => {
         <p className="font-semibold text-xl">{organization?.name}</p>
         <div className="flex items-center text-xs text-muted-foreground">
           <CreditCard className="w-3 h-3 mr-1" />
-          {isPro ? "Pro" : "Free"}
+          {isPro ? "Pro" : "免费用户"}
         </div>
       </div>
     </div>

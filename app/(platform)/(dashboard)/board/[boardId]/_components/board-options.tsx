@@ -37,7 +37,7 @@ export const BoardOptions = ({ id }: BoardOptionsProps) => {
 
       <PopoverContent className="px-0 pt-3 pb-3" side="bottom" align="start">
         <div className="text-sm font-medium text-center  pb-4">
-          Board actions
+          操作面板
         </div>
         <PopoverClose asChild>
           <Button
@@ -53,7 +53,7 @@ export const BoardOptions = ({ id }: BoardOptionsProps) => {
           disabled={isLoading}
           className="rounded-none w-full h-auto p-2 px-5 justify-start font-normal text-sm text-neutral-600"
         >
-          Delete this board
+          删除面板
         </Button>
       </PopoverContent>
     </Popover>

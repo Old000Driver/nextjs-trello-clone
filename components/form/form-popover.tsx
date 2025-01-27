@@ -39,11 +39,11 @@ export const FormPopover = ({
     onSuccess: (data) => {
       if (!data || !data.id) {
         // console.error("Invalid board data received:", data);
-        toast.error("Failed to create board.");
+        toast.error("面板创建失败");
         return;
       }
       // console.log(data);
-      toast.success("Board created successfully!");
+      toast.success("面板创建成功！");
       closeRef.current?.click();
       router.push(`/board/${data.id}`);
     },
@@ -71,7 +71,7 @@ export const FormPopover = ({
         sideOffset={sideOffset}
       >
         <div className="text-sm font-medium text-center text-neutral-600">
-          create board
+          创建面板
         </div>
         <PopoverClose ref={closeRef} asChild>
           <Button
@@ -86,12 +86,12 @@ export const FormPopover = ({
             <FormPicker id="image" errors={fieldErrors} />
             <FormInput
               id="title"
-              label="Board Title"
+              label="面板标题"
               type="text"
               errors={fieldErrors}
             />
           </div>
-          <FormSubmit className="w-full">Create</FormSubmit>
+          <FormSubmit className="w-full">创建</FormSubmit>
         </form>
       </PopoverContent>
     </Popover>
